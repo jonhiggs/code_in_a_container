@@ -3,13 +3,14 @@ FROM debian:jessie
 ENV USER=jon
 ENV HOME=/home/${USER}
 
-RUN apt-get update
-RUN apt-get update && apt-get -y install tmux git tig wget curl vim
+RUN apt-get update && apt-get -y install tmux git tig wget curl vim sudo
 
 RUN mkdir -p ${HOME}
 RUN groupadd ${USER}
-RUN useradd -d ${HOME} -g ${USER} ${USER}
+RUN useradd -d ${HOME} -g ${USER} -G sudo ${USER}
 RUN chown -R ${USER}:${USER} ${HOME}
+RUN sed -i -E "s/^${USER}:[^:]*/${USER}:${SHADOW}/" /etc/shadow
+# TODO: make sudo nopasswd so that shadow isn't needed
 
 USER ${USER}
 WORKDIR ${HOME}
