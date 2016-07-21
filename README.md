@@ -13,6 +13,8 @@ The idea was that maybe I could pair program by throwing my environment inside a
 ## Features
 
 - Shared tmux
+- neovim
+- sudo
 
 
 ## TODO
