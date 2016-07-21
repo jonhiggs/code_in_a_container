@@ -43,5 +43,6 @@ RUN make
 
 USER ${USER}
 WORKDIR ${HOME}
+RUN git clone https://github.com/jonhiggs/vimfiles ${HOME}/etc/vimfiles
 
 CMD [ "/bin/bash" ]
