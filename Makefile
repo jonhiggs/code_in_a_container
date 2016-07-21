@@ -2,12 +2,12 @@ run: build
 	docker run -it \
 		-v tmux_sockets:/tmp/tmux-0 \
 		--rm \
+		--detach-keys="ctrl-_" \
 		--security-opt="seccomp=unconfined" \
 		code_in_a_container
 
 build:
 	docker build -t code_in_a_container .
-
 
 volume:
 	docker volume create --name tmux_sockets
