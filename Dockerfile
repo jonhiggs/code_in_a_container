@@ -40,13 +40,14 @@ RUN apt-get -y install libtool-bin
 RUN apt-get -y install automake
 RUN apt-get -y install unzip
 RUN make
-run make install
+RUN make install
 
 USER ${USER}
 WORKDIR ${HOME}
 RUN git clone https://github.com/jonhiggs/vimfiles ${HOME}/etc/vimfiles
 RUN mkdir ${HOME}/.config
 RUN ln -s ${HOME}/etc/vimfiles/config ${HOME}/.config/nvim
-#RUN ln -s ${HOME}/etc/vimfiles/config/nvim ${HOME}/.vim
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.config/nvim/bundle/Vundle.vim
+RUN nvim +PluginInstall +qall
 
 CMD [ "/bin/bash" ]
